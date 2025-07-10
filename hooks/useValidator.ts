@@ -7,6 +7,7 @@ import { isEqual } from "lodash";
 import {
   type ArrayPath,
   type FieldErrors,
+  type Resolver,
   useFieldArray,
   useForm,
   type UseFormProps,
@@ -33,7 +34,7 @@ export const useValidator = <T extends ZodRawShape>({
 }: UseValidatorProps<T>) => {
   const { formState, getValues, reset, trigger, ...form } = useForm<Schema<T>>({
     ...props,
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema) as Resolver<Schema<T>>,
   });
 
   useEffect(() => {
